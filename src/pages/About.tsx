@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ImageWithFallback } from "@/components/figma/ImageWithFallback";
 import { Quote, Users, Sparkles, BarChart3 } from "lucide-react";
+import {ProcessTimeline} from "@/components/ui/ProcessTimeline.tsx";
 
 export default function About() {
   return (
@@ -31,55 +32,42 @@ function SectionContainer({ children, className = "" }: { children: React.ReactN
 // 1) Our Story
 function OurStory() {
   const timeline = [
-    { year: "2016", title: "Founded as Elite HR Solutions Ltd", desc: "Rooted in people, practice, and purpose." },
-    { year: "2020", title: "Regional Expansion", desc: "Growing across East Africa with culture-first work." },
-    { year: "2023", title: "Transformation to HLCC", desc: "A new identity with the same human-centered conviction." },
-    { year: "2025", title: "Scaling Impact", desc: "Partnering across Africa and beyond to shape thriving cultures." },
+    { 
+      number: "2016", 
+      title: "Founded as Elite HR Solutions Ltd", 
+      description: "Rooted in people, practice, and purpose." 
+    },
+    { 
+      number: "2020", 
+      title: "Regional Expansion", 
+      description: "Growing across East Africa with culture-first work." 
+    },
+    { 
+      number: "2023", 
+      title: "Transformation to HLCC", 
+      description: "A new identity with the same human-centered conviction." 
+    },
+    { 
+      number: "2025", 
+      title: "Scaling Impact", 
+      description: "Partnering across Africa and beyond to shape thriving cultures." 
+    },
   ];
 
   return (
     <SectionContainer className="py-24 bg-gradient-to-b from-white to-slate-50">
-      <div className="grid md:grid-cols-2 gap-12 items-center">
-        {/* Left: Copy */}
-        <div>
-          <h2 className="text-3xl md:text-4xl font-semibold text-[var(--navy-dark)] mb-6">Our Story</h2>
-          <p className="text-lg text-gray-700 leading-relaxed mb-6">
-            From Elite HR to HLCC, our journey has always been about one thing — helping
-            organizations grow through people.
-          </p>
-          <p className="text-gray-700 leading-relaxed">
-            We've evolved from an HR-focused firm to a leadership and culture partner, aligning
-            strategy with lived values, people with purpose, and performance with belonging.
-          </p>
-        </div>
+      <div className="max-w-6xl mx-auto text-center mb-16">
+        <h2 className="text-3xl md:text-4xl font-semibold text-[var(--navy-dark)] mb-6">Our Story</h2>
+        <p className="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+          From Elite HR to HLCC, our journey has always been about one thing — helping
+          organizations grow through people. We've evolved from an HR-focused firm to a leadership 
+          and culture partner, aligning strategy with lived values, people with purpose, and performance with belonging.
+        </p>
+      </div>
 
-        {/* Right: Timeline */}
-        <div className="relative">
-          <div className="absolute left-4 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[var(--gold-accent)] to-[var(--blue-accent)]" />
-          <div className="space-y-8 pl-12">
-            {timeline.map((item, i) => (
-              <motion.div
-                key={item.year}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                viewport={{ once: true }}
-                className="relative"
-              >
-                <div className="absolute -left-[34px] top-1.5 w-6 h-6 rounded-full bg-white border-2 border-[var(--gold-accent)]" />
-                <Card className="border-2 hover:border-[var(--gold-deep)] transition-colors">
-                  <CardHeader className="pb-2">
-                    <div className="text-sm text-[var(--gold-deep)]">{item.year}</div>
-                    <CardTitle className="text-lg text-[var(--navy-dark)]">{item.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-gray-600">{item.desc}</CardDescription>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+      {/* Process Timeline */}
+      <div className="relative">
+        <ProcessTimeline steps={timeline} />
       </div>
     </SectionContainer>
   );
