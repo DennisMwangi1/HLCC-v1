@@ -5,7 +5,11 @@ import { motion, useAnimation } from "framer-motion";
 import { Button } from "./ui/button";
 import { ArrowRight } from "lucide-react";
 
-export function Hero() {
+interface HeroProps {
+  onBookConsultation: () => void;
+}
+
+export function Hero({ onBookConsultation }: HeroProps) {
     const metrics = [
         {
             target: 10000,
@@ -72,8 +76,8 @@ export function Hero() {
             <div className="absolute inset-0 bg-gradient-to-r from-[var(--navy-dark)]/90 via-[var(--navy-dark)]/85 to-[var(--navy-dark)]/60" />
 
             {/* Decorative gradients */}
-            <div className="absolute top-20 right-20 w-80 h-80 bg-[var(--blue-accent)]/25 rounded-full blur-3xl" />
-            <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-[var(--gold-accent)]/25 rounded-full blur-3xl" />
+            {/*<div className="absolute top-20 right-20 w-80 h-80 bg-[var(--blue-accent)]/25 rounded-full blur-3xl" />*/}
+            {/*<div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-[var(--gold-accent)]/25 rounded-full blur-3xl" />*/}
 
             {/* Content grid */}
             <div className="container relative mx-auto px-4 md:px-6 py-20 md:py-32 grid md:grid-cols-2 gap-12 items-center">
@@ -96,6 +100,7 @@ export function Hero() {
                         <Button
                             size="lg"
                             className="bg-gradient-to-r from-[var(--blue-accent)] to-[var(--gold-accent)] text-white hover:opacity-90 text-lg px-8 py-6"
+                            onClick={onBookConsultation}
                         >
                             Book a Consultation
                             <ArrowRight className="ml-2 h-5 w-5" />
@@ -103,7 +108,7 @@ export function Hero() {
                         <Button
                             size="lg"
                             variant="outline"
-                            className="border-2 border-white/30 text-white hover:bg-white/10 text-lg px-8 py-6"
+                            className="border-2 border-white/30 text-white hover:bg-black/10 hover:text-white bg-white/10 text-lg px-8 py-6"
                         >
                             Learn More
                         </Button>

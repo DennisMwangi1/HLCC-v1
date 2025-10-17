@@ -9,10 +9,14 @@ import { CaseStudies } from "@/components/CaseStudies";
 import { Insights } from "@/components/Insights";
 import { FAQ } from "@/components/FAQ";
 
-export default function Home() {
+interface HomeProps {
+  onBookConsultation: () => void;
+}
+
+export default function Home({ onBookConsultation }: HomeProps) {
   return (
     <main>
-      <Hero />
+      <Hero onBookConsultation={onBookConsultation} />
       <WhoWeAre />
       <InsightToImpact />
       <Offerings />

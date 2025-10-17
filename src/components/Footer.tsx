@@ -1,7 +1,12 @@
 import { Button } from "./ui/button";
 import { Mail, Phone, MapPin, Linkedin, Twitter, Youtube } from "lucide-react";
+import { Link } from "react-router-dom";
 
-export function Footer() {
+interface FooterProps {
+    onBookConsultation: () => void;
+}
+
+export function Footer({ onBookConsultation }: FooterProps) {
     const footerLinks = {
         "What We Do": [
             "Leadership Development",
@@ -28,18 +33,20 @@ export function Footer() {
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Button
-                                size="lg"
                                 className="bg-gradient-to-r from-[var(--blue-accent)] to-[var(--gold-accent)] text-white hover:opacity-90"
+                                onClick={() => onBookConsultation()}
                             >
                                 Schedule a Discovery Call
                             </Button>
-                            <Button
-                                size="lg"
-                                variant="outline"
-                                className="border-white/30 text-white hover:bg-white/10"
-                            >
-                                Download Company Profile
-                            </Button>
+                                    <Link to="/contact">
+                                <Button
+                                    size="lg"
+                                    variant="outline"
+                                    className="border-white/30 text-white hover:bg-black/10 hover:text-white bg-white/10 w-full sm:w-auto"
+                                >
+                                    Contact Us
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -83,12 +90,12 @@ export function Footer() {
                             <ul className="space-y-3">
                                 {links.map((link) => (
                                     <li key={link}>
-                                        <a
-                                            href="#"
+                                        <Link
+                                            to={link === 'Contact' ? '/contact' : '#'}
                                             className="text-gray-300 hover:text-white transition-colors"
                                         >
                                             {link}
-                                        </a>
+                                        </Link>
                                     </li>
                                 ))}
                             </ul>
